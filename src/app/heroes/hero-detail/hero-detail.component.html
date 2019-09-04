@@ -1,9 +1,9 @@
 <div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
+  <h2>{{(hero$ | async)?.name}} Details</h2>
+  <div><span>id: </span>{{(hero$ | async)?.id}}</div>
   <div>
     <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
+      <input [ngModel]="(hero$ | async)?.name" placeholder="name"/>
     </label>
   </div>
 </div>
