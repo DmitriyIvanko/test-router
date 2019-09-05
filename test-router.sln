@@ -7,20 +7,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "test-router", ".", "{B6223E
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_53591"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\Projects\demo\test-router\"
+		Debug.AspNetCompiler.PhysicalPath = "..\test-router\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53591\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_53591"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\Projects\demo\test-router\"
+		Release.AspNetCompiler.PhysicalPath = "..\test-router\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53591\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53591"
+		SlnRelativePath = "..\test-router\"
 	EndProjectSection
 EndProject
 Global

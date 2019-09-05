@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +17,7 @@ import { HeroesModule } from './heroes/heroes.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HeroesModule,
     AppRoutingModule,
   ],
