@@ -1,14 +1,6 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Hero } from '../hero';
@@ -19,12 +11,9 @@ import { HeroService } from '../hero.service';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.scss']
 })
-export class HeroDetailComponent implements OnDestroy, OnInit {
+export class HeroDetailComponent implements OnInit {
 
-  @Input()
-  public hero: Hero;
-
-  public subscription = new Subscription();
+  public hero$: Observable<Hero>;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,17 +22,11 @@ export class HeroDetailComponent implements OnDestroy, OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.subscription.add(this.route.paramMap.pipe(
+    this.hero$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         return this.service.getHero(+params.get('id'));
       }),
-    ).subscribe((hero) => {
-      this.hero = hero;
-    }));
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    );
   }
 
   gotoHeroes(hero: Hero) {
