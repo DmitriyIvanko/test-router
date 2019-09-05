@@ -1,6 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Hero } from '../hero';
@@ -11,10 +19,12 @@ import { HeroService } from '../hero.service';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.scss']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnDestroy, OnInit {
 
   @Input()
-  public hero$: Observable<Hero>;
+  public hero: Hero;
+
+  public subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -23,11 +33,25 @@ export class HeroDetailComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.hero$ = this.route.paramMap.pipe(
+    this.subscription.add(this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         return this.service.getHero(+params.get('id'));
       }),
-    );
+    ).subscribe((hero) => {
+      this.hero = hero;
+    }));
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  gotoHeroes(hero: Hero) {
+    let heroId = hero ? hero.id : null;
+    // Pass along the hero id if available
+    // so that the HeroList component can select that hero.
+    // Include a junk 'foo' property for fun.
+    this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
   }
 
 }
